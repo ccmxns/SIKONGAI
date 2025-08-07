@@ -1,0 +1,52 @@
+{
+  "name": "sikongai",
+  "version": "1.0.11",
+  "description": "司空AI 桌面应用",
+  "author": "李清欢",
+  "main": "src/main.js",
+  "scripts": {
+    "prebuild": "node scripts/version-bump.js",
+    "start": "electron .",
+    "dev": "electron . --dev",
+    "build": "electron-builder",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "devDependencies": {
+    "electron": "^27.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "dependencies": {
+    "electron-window-state": "^5.0.3"
+  },
+  "build": {
+    "appId": "com.sikongai.app",
+    "productName": "司空AI",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "src/**/*",
+      "ico.png",
+      "go-server/**/*",
+      "!**/*.map"
+    ],
+    "extraResources": [
+      {
+        "from": "go-server/sikongai-server.exe",
+        "to": "go-server/sikongai-server.exe",
+        "filter": [
+          "sikongai-server.exe"
+        ]
+      }
+    ],
+    "asar": true,
+    "asarUnpack": [
+      "go-server/**/*"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "ico.png"
+    }
+  }
+}
