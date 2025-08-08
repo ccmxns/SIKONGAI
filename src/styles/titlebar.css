@@ -1,0 +1,140 @@
+/* 自定义标题栏样式 */
+.titlebar {
+    display: flex;
+    height: 32px;
+    background-color: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    -webkit-app-region: no-drag;
+}
+
+.titlebar-drag-region {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding-left: 12px;
+    -webkit-app-region: drag;
+}
+
+.titlebar-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.titlebar-icon {
+    width: 16px;
+    height: 16px;
+    border-radius: 2px;
+}
+
+.titlebar-controls {
+    display: flex;
+    -webkit-app-region: no-drag;
+}
+
+.titlebar-control {
+    width: 46px;
+    height: 32px;
+    border: none;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.titlebar-control:hover {
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+
+.titlebar-control.close:hover {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+.titlebar-control.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.titlebar-control.active:hover {
+    background-color: var(--primary-hover);
+}
+
+/* 透明度按钮特殊样式 */
+#opacity-btn.active {
+    background-color: var(--success-color);
+}
+
+#opacity-btn.active:hover {
+    background-color: var(--success-hover);
+}
+
+/* 透明度按钮悬停时的特殊效果 */
+#opacity-btn:hover {
+    background-color: var(--bg-tertiary);
+}
+
+#opacity-btn.active svg {
+    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.8));
+}
+
+/* 主题切换按钮特殊样式 */
+#theme-toggle-btn.active {
+    background-color: var(--primary-color);
+}
+
+#theme-toggle-btn.active:hover {
+    background-color: var(--primary-hover);
+}
+
+#theme-toggle-btn:hover {
+    background-color: var(--bg-tertiary);
+}
+
+#theme-toggle-btn.active svg {
+    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.6));
+}
+
+/* 主题图标切换动画 */
+#theme-toggle-btn svg {
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+#theme-toggle-btn:hover svg {
+    transform: scale(1.1);
+}
+
+.titlebar-control svg {
+    pointer-events: none;
+}
+
+/* Windows 特定样式 */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+    .titlebar-control {
+        width: 46px;
+    }
+}
+
+/* macOS 特定样式 */
+@supports (-webkit-backdrop-filter: blur(10px)) {
+    .titlebar {
+        background-color: rgba(245, 245, 245, 0.8);
+        -webkit-backdrop-filter: blur(10px);
+    }
+    
+    [data-theme="dark"] .titlebar {
+        background-color: rgba(45, 45, 45, 0.8);
+    }
+}

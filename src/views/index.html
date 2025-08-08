@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>司空AI</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/titlebar.css">
+    <link rel="stylesheet" href="../styles/chat.css">
+</head>
+<body>
+    <!-- 自定义标题栏 -->
+    <div class="titlebar">
+        <div class="titlebar-drag-region">
+            <div class="titlebar-title">
+                <img src="../ico.png" alt="司空AI" class="titlebar-icon" id="titlebar-icon">
+                <span>司空AI</span>
+            </div>
+        </div>
+        <div class="titlebar-controls">
+            <button class="titlebar-control" id="theme-toggle-btn" title="切换主题">
+                <svg width="10" height="10" viewBox="0 0 10 10" class="theme-icon-light">
+                    <circle cx="5" cy="5" r="2.5" fill="currentColor"/>
+                    <path d="M5 0v1M5 9v1M0 5h1M9 5h1M1.5 1.5l.7.7M7.8 7.8l.7.7M8.5 1.5l-.7.7M2.2 7.8l-.7.7" stroke="currentColor" stroke-width="0.5"/>
+                </svg>
+                <svg width="10" height="10" viewBox="0 0 10 10" class="theme-icon-dark" style="display: none;">
+                    <path d="M6 0.5c-1.5 0-2.8 0.6-3.8 1.6C1.2 3.1 0.6 4.4 0.6 5.9c0 1.5 0.6 2.8 1.6 3.8S4.6 11.3 6.1 11.3c0.8 0 1.5-0.2 2.2-0.5-0.5 0.2-1.1 0.3-1.7 0.3-2.2 0-4-1.8-4-4s1.8-4 4-4c0.6 0 1.2 0.1 1.7 0.3C7.5 2.7 6.8 2.5 6 2.5z" fill="currentColor"/>
+                </svg>
+            </button>
+            <button class="titlebar-control" id="opacity-btn" title="透明度开关">
+                <svg width="10" height="10" viewBox="0 0 10 10">
+                    <circle cx="5" cy="5" r="3" fill="none" stroke="currentColor" stroke-width="1"/>
+                    <circle cx="5" cy="5" r="1.5" fill="currentColor" opacity="0.6"/>
+                </svg>
+            </button>
+            <button class="titlebar-control" id="pin-btn" title="置顶显示">
+                <svg width="10" height="10" viewBox="0 0 10 10">
+                    <path d="M3,1 L7,1 L7,3 L8,3 L8,4 L7,4 L7,6 L5.5,6 L5.5,9 L4.5,9 L4.5,6 L3,6 L3,4 L2,4 L2,3 L3,3 Z" stroke="currentColor" stroke-width="0.5" fill="currentColor"/>
+                </svg>
+            </button>
+            <button class="titlebar-control" id="settings-btn" title="设置">
+                <svg width="10" height="10" viewBox="0 0 10 10">
+                    <path d="M5 2.97a2.03 2.03 0 1 0 0 4.06 2.03 2.03 0 0 0 0-4.06zM3.59 5a1.41 1.41 0 1 1 2.82 0 1.41 1.41 0 0 1-2.82 0z"/>
+                    <path d="M6.12.84c-.33-1.12-1.92-1.12-2.25 0l-.06.2a.55.55 0 0 1-.79.33l-.18-.1c-1.03-.56-2.15.57-1.59 1.59l.1.18a.55.55 0 0 1-.33.79l-.2.06c-1.12.33-1.12 1.92 0 2.25l.2.06a.55.55 0 0 1 .33.79l-.1.18c-.56 1.03.56 2.15 1.59 1.59l.18-.1a.55.55 0 0 1 .79.33l.06.2c.33 1.12 1.92 1.12 2.25 0l.06-.2a.55.55 0 0 1 .79-.33l.18.1c1.03.56 2.15-.56 1.59-1.59l-.1-.18a.55.55 0 0 1 .33-.79l.2-.06c1.12-.33 1.12-1.92 0-2.25l-.2-.06a.55.55 0 0 1-.33-.79l.1-.18c.56-1.03-.56-2.15-1.59-1.59l-.18.1a.55.55 0 0 1-.79-.33l-.06-.2zm-1.65.18c.15-.52.9-.52 1.05 0l.06.2a1.17 1.17 0 0 0 1.69.7l.18-.1c.48-.26 1.01.26.74.74l-.1.18a1.17 1.17 0 0 0 .7 1.69l.2.06c.52.15.52.9 0 1.05l-.2.06a1.17 1.17 0 0 0-.7 1.69l.1.18c.26.48-.26 1.01-.74.74l-.18-.1a1.17 1.17 0 0 0-1.69.7l-.06.2c-.15.52-.9.52-1.05 0l-.06-.2a1.17 1.17 0 0 0-1.69-.7l-.18.1c-.48.26-1.01-.26-.74-.74l.1-.18a1.17 1.17 0 0 0-.7-1.69l-.2-.06c-.52-.15-.52-.9 0-1.05l.2-.06a1.17 1.17 0 0 0 .7-1.69l-.1-.18c-.26-.48.26-1.01.74-.74l.18.1a1.17 1.17 0 0 0 1.69-.7l.06-.2z"/>
+                </svg>
+            </button>
+            <button class="titlebar-control" id="minimize-btn" title="最小化">
+                <svg width="10" height="10" viewBox="0 0 10 10">
+                    <path d="M0,5 L10,5" stroke="currentColor" stroke-width="1"/>
+                </svg>
+            </button>
+            <button class="titlebar-control" id="maximize-btn" title="最大化">
+                <svg width="10" height="10" viewBox="0 0 10 10">
+                    <rect x="0" y="0" width="9" height="9" fill="none" stroke="currentColor" stroke-width="1"/>
+                </svg>
+            </button>
+            <button class="titlebar-control close" id="close-btn" title="关闭">
+                <svg width="10" height="10" viewBox="0 0 10 10">
+                    <path d="M0,0 L10,10 M0,10 L10,0" stroke="currentColor" stroke-width="1"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- 主要内容区域 -->
+    <div class="main-container">
+        <!-- 侧边栏 -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2>司空AI助手</h2>
+                <button class="new-chat-btn" id="new-chat-btn">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M8 2a.75.75 0 01.75.75v4.5h4.5a.75.75 0 010 1.5h-4.5v4.5a.75.75 0 01-1.5 0v-4.5h-4.5a.75.75 0 010-1.5h4.5v-4.5A.75.75 0 018 2z"/>
+                    </svg>
+                    新对话
+                </button>
+
+                <button class="clear-history-btn" id="clear-history-btn">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                        <path fill-rule="evenodd" d="M5.75 1a.75.75 0 00-.75.75v1.5h6.5v-1.5a.75.75 0 00-.75-.75h-5zM4.25 1.75A2.25 2.25 0 016.5 0h3a2.25 2.25 0 012.25 2.25v1.5h2.5a.75.75 0 010 1.5h-.5v9a2.25 2.25 0 01-2.25 2.25h-7A2.25 2.25 0 012.25 14.25v-9h-.5a.75.75 0 010-1.5h2.5v-1.5zm1.5 3.75a.75.75 0 011.5 0v7a.75.75 0 01-1.5 0v-7zm3.5 0a.75.75 0 011.5 0v7a.75.75 0 01-1.5 0v-7z" clip-rule="evenodd"/>
+                    </svg>
+                    清除历史
+                </button>
+            </div>
+            <div class="chat-history" id="chat-history">
+                <!-- 聊天历史将在这里动态生成 -->
+            </div>
+        </div>
+
+        <!-- 左侧边栏拖拽分隔条 -->
+        <div class="sidebar-resizer left-resizer" id="left-resizer"></div>
+
+        <!-- 聊天区域 -->
+        <div class="chat-container">
+            <div class="chat-messages" id="chat-messages">
+                <div class="welcome-message">
+                    <div class="welcome-icon">🤖</div>
+                    <h3>欢迎使用司空AI</h3>
+                    <p>我是你的智能助手，有什么可以帮助你的吗？</p>
+                </div>
+            </div>
+            
+            <!-- 图片预览区域 -->
+            <div class="image-preview-area" id="image-preview-area" style="display: none;">
+                <div class="preview-header">
+                    <span class="preview-label">图片预览</span>
+                    <button class="clear-all-images-btn" id="clear-all-images" title="清除所有图片">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                            <path d="M6.5 1h3a.5.5 0 01.5.5v1H13a.5.5 0 010 1v1a.5.5 0 01-.5.5h-9A.5.5 0 013 4v-1a.5.5 0 010-1h2.5v-1a.5.5 0 01.5-.5zM4.118 4L4.447 12.894A1 1 0 005.443 14h5.114a1 1 0 00.996-1.106L11.882 4H4.118z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="image-thumbnails" id="image-thumbnails">
+                    <!-- 图片缩略图将动态插入这里 -->
+                </div>
+            </div>
+            
+            <!-- 快捷设置容器 -->
+            <div class="quick-settings-container">
+                <div class="quick-setting-item">
+                    <label for="quick-concurrent-count">并发数量:</label>
+                    <input type="number" 
+                           id="quick-concurrent-count" 
+                           min="1" 
+                           max="1000" 
+                           placeholder="默认"
+                           title="设置本次请求的并发数量，留空使用全局设置">
+                </div>
+                
+                <div class="quick-setting-item">
+                    <label for="quick-provider">供应商:</label>
+                    <select id="quick-provider" title="选择API供应商，留空使用全局设置">
+                        <option value="">默认</option>
+                    </select>
+                </div>
+                
+                <div class="quick-setting-item">
+                    <label for="quick-api-key">密钥:</label>
+                    <select id="quick-api-key" title="选择API密钥，留空使用全局设置">
+                        <option value="">默认</option>
+                    </select>
+                </div>
+                
+                <div class="quick-setting-item">
+                    <label for="quick-model">模型:</label>
+                    <select id="quick-model" title="选择AI模型，留空使用全局设置">
+                        <option value="">默认</option>
+                    </select>
+                </div>
+                
+                <div class="quick-setting-item">
+                    <label for="quick-system-prompt">系统提示词:</label>
+                    <select id="quick-system-prompt" title="选择系统提示词，留空使用全局设置">
+                        <option value="">默认</option>
+                        <option value="assistant">通用助手</option>
+                        <option value="translator">翻译助手</option>
+                        <option value="coder">编程助手</option>
+                        <option value="writer">写作助手</option>
+                    </select>
+                </div>
+                
+                <div class="quick-setting-item">
+                    <label for="quick-max-tokens">最大回复长度:</label>
+                    <input type="number" 
+                           id="quick-max-tokens" 
+                           min="100" 
+                           max="50000" 
+                           step="100" 
+                           value="15240"
+                           title="限制AI回复的最大令牌数量，100-50000">
+                </div>
+                
+                <div class="quick-setting-item">
+                    <label for="quick-temperature">温度:</label>
+                    <div class="temperature-control">
+                        <input type="range" 
+                               id="quick-temperature" 
+                               min="0" 
+                               max="2" 
+                               step="0.1" 
+                               value="0.7"
+                               title="控制回答的创造性，0.0-2.0">
+                        <span class="temperature-value">0.7</span>
+                    </div>
+                </div>
+                
+                <div class="quick-setting-item">
+                    <label for="bubble-width">气泡宽度:</label>
+                    <div class="bubble-width-control">
+                        <input type="range" 
+                               id="bubble-width" 
+                               min="60" 
+                               max="600" 
+                               step="10" 
+                               value="85"
+                               title="调整消息气泡的宽度，60%-600%">
+                        <span class="bubble-width-value">85%</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 可拖拽分隔条 -->
+            <div class="input-resizer" id="input-resizer"></div>
+            
+            <div class="chat-input-container" id="chat-input-container">
+                <div class="chat-input-wrapper">
+                    <textarea 
+                        id="chat-input" 
+                        placeholder="输入你的问题..." 
+                        rows="1"
+                    ></textarea>
+                    <button id="send-btn" class="send-btn" disabled>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"/>
+                        </svg>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 右侧边栏拖拽分隔条 -->
+        <div class="sidebar-resizer right-resizer" id="right-resizer"></div>
+
+        <!-- 右侧边栏 -->
+        <div class="right-sidebar" id="right-sidebar">
+            <div class="right-sidebar-header">
+                <h3>预设模块</h3>
+                <div class="preset-header-actions">
+                    <button class="toggle-layout-btn" id="toggle-layout-btn" title="切换布局">
+                        <svg width="14" height="14" viewBox="0 0 14 14" class="layout-grid-icon">
+                            <rect x="1" y="1" width="5" height="5" stroke="currentColor" fill="none"/>
+                            <rect x="8" y="1" width="5" height="5" stroke="currentColor" fill="none"/>
+                            <rect x="1" y="8" width="5" height="5" stroke="currentColor" fill="none"/>
+                            <rect x="8" y="8" width="5" height="5" stroke="currentColor" fill="none"/>
+                        </svg>
+                        <svg width="14" height="14" viewBox="0 0 14 14" class="layout-list-icon" style="display: none;">
+                            <rect x="1" y="2" width="12" height="2" stroke="currentColor" fill="none"/>
+                            <rect x="1" y="6" width="12" height="2" stroke="currentColor" fill="none"/>
+                            <rect x="1" y="10" width="12" height="2" stroke="currentColor" fill="none"/>
+                        </svg>
+                    </button>
+                    <button class="add-preset-btn" id="add-preset-btn" title="新增预设">
+                        <svg width="12" height="12" viewBox="0 0 12 12">
+                            <path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="right-sidebar-content">
+                <div class="presets-container" id="presets-container">
+                    <!-- 预设列表将在这里动态生成 -->
+                    <div class="preset-placeholder">
+                        <div class="preset-placeholder-icon">⚙️</div>
+                        <p>暂无预设</p>
+                        <p class="preset-placeholder-tip">点击上方 + 按钮添加预设</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 预设右键菜单 -->
+    <div class="preset-context-menu" id="preset-context-menu">
+        <div class="preset-context-menu-item" id="context-edit-preset">
+            <svg width="12" height="12" viewBox="0 0 12 12">
+                <path d="M8.5 1L11 3.5 4 10.5H1.5V8L8.5 1Z" stroke="currentColor" fill="none"/>
+            </svg>
+            编辑预设
+        </div>
+        <div class="preset-context-menu-item" id="context-activate-preset">
+            <svg width="12" height="12" viewBox="0 0 12 12">
+                <circle cx="6" cy="6" r="3" stroke="currentColor" fill="none"/>
+                <path d="m6 3 1.5 3L6 9l-1.5-3L6 3z" fill="currentColor"/>
+            </svg>
+            激活预设
+        </div>
+        <div class="preset-context-menu-item" id="context-activate-preset-new-session">
+            <svg width="12" height="12" viewBox="0 0 12 12">
+                <circle cx="6" cy="6" r="2" stroke="currentColor" fill="none"/>
+                <path d="M6 1v2M6 9v2M1 6h2M9 6h2" stroke="currentColor" stroke-width="1"/>
+            </svg>
+            激活预设并新建会话
+        </div>
+        <div class="preset-context-menu-item danger" id="context-delete-preset">
+            <svg width="12" height="12" viewBox="0 0 12 12">
+                <path d="M2 3h8M4 3V1h4v2M5 5v4M7 5v4M3 3v7a1 1 0 001 1h4a1 1 0 001-1V3" stroke="currentColor" fill="none"/>
+            </svg>
+            删除预设
+        </div>
+    </div>
+
+    <!-- 字数统计 - 固定在左下角 -->
+    <div class="character-count-fixed">
+        <span class="character-count">0</span>
+    </div>
+
+    <!-- 预设编辑弹窗 -->
+    <div class="preset-modal" id="preset-modal">
+        <div class="preset-modal-overlay"></div>
+        <div class="preset-modal-content">
+            <div class="preset-modal-header">
+                <h3 id="preset-modal-title">新增预设</h3>
+                <button class="preset-modal-close" id="preset-modal-close">
+                    <svg width="12" height="12" viewBox="0 0 12 12">
+                        <path d="M9 3L3 9M3 3l6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+            </div>
+            <form class="preset-form" id="preset-form">
+                <div class="preset-form-row">
+                    <label for="preset-name">预设名称</label>
+                    <input type="text" id="preset-name" name="name" placeholder="请输入预设名称" required>
+                </div>
+                
+                <div class="preset-form-row">
+                    <label for="preset-provider">供应商</label>
+                    <select id="preset-provider" name="provider">
+                        <option value="https://api.openai.com" data-default>OpenAI</option>
+                        <option value="https://yunwu.ai" data-default>云雾AI</option>
+                        <!-- 更多供应商选项将动态加载 -->
+                    </select>
+                </div>
+                
+                <div class="preset-form-row">
+                    <label for="preset-api-key">API密钥</label>
+                    <select id="preset-api-key" name="apiKey" required>
+                        <option value="">请选择API密钥</option>
+                        <!-- API密钥选项将动态加载 -->
+                    </select>
+                </div>
+                
+                <div class="preset-form-row">
+                    <label for="preset-model">模型名称</label>
+                    <select id="preset-model" name="model">
+                        <option value="gpt-3.5-turbo" data-default>GPT-3.5 Turbo</option>
+                        <option value="gpt-4" data-default>GPT-4</option>
+                        <option value="gpt-4-turbo" data-default>GPT-4 Turbo</option>
+                        <!-- 更多模型选项将动态加载 -->
+                    </select>
+                </div>
+                
+                <div class="preset-form-row">
+                    <label for="preset-system-prompt">系统提示词</label>
+                    <select id="preset-system-prompt" name="systemPrompt">
+                        <option value="">请选择系统提示词</option>
+                        <!-- 系统提示词选项将动态加载 -->
+                    </select>
+                </div>
+                
+                <div class="preset-form-row">
+                    <label for="preset-temperature">温度参数</label>
+                    <div class="temperature-input-group">
+                        <input type="range" id="preset-temperature" name="temperature" min="0" max="2" step="0.1" value="0.7">
+                        <span class="temperature-value" id="preset-temperature-value">0.7</span>
+                    </div>
+                </div>
+                
+                <div class="preset-form-actions">
+                    <button type="button" class="preset-btn preset-btn-cancel" id="preset-cancel-btn">取消</button>
+                    <button type="submit" class="preset-btn preset-btn-save" id="preset-save-btn">保存</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../scripts/main.js"></script>
+    <script src="../scripts/titlebar.js"></script>
+    <script src="../scripts/api.js"></script>
+    <script src="../scripts/settings.js"></script>
+    <script src="../scripts/parameter-edit-modal.js"></script>
+    <script src="../scripts/markdown-renderer.js"></script>
+    <script src="../scripts/sidebar-manager.js"></script>
+    <script src="../scripts/preset-manager.js"></script>
+    <script src="../scripts/chat.js"></script>
+</body>
+</html>

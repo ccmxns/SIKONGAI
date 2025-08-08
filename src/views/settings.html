@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>设置 - 司空AI</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/titlebar.css">
+    <link rel="stylesheet" href="../styles/settings.css">
+</head>
+<body>
+    <!-- 自定义标题栏 -->
+    <div class="titlebar">
+        <div class="titlebar-drag-region">
+            <div class="titlebar-title">
+                <img src="../ico.png" alt="司空AI" class="titlebar-icon" id="titlebar-icon">
+                <span>司空AI - 设置</span>
+            </div>
+        </div>
+        <div class="titlebar-controls">
+            <button class="titlebar-control" id="theme-toggle-btn" title="切换主题">
+                <svg width="10" height="10" viewBox="0 0 10 10" class="theme-icon-light">
+                    <circle cx="5" cy="5" r="2.5" fill="currentColor"/>
+                    <path d="M5 0v1M5 9v1M0 5h1M9 5h1M1.5 1.5l.7.7M7.8 7.8l.7.7M8.5 1.5l-.7.7M2.2 7.8l-.7.7" stroke="currentColor" stroke-width="0.5"/>
+                </svg>
+                <svg width="10" height="10" viewBox="0 0 10 10" class="theme-icon-dark" style="display: none;">
+                    <path d="M6 0.5c-1.5 0-2.8 0.6-3.8 1.6C1.2 3.1 0.6 4.4 0.6 5.9c0 1.5 0.6 2.8 1.6 3.8S4.6 11.3 6.1 11.3c0.8 0 1.5-0.2 2.2-0.5-0.5 0.2-1.1 0.3-1.7 0.3-2.2 0-4-1.8-4-4s1.8-4 4-4c0.6 0 1.2 0.1 1.7 0.3C7.5 2.7 6.8 2.5 6 2.5z" fill="currentColor"/>
+                </svg>
+            </button>
+            <button class="titlebar-control" id="minimize-btn" title="最小化">
+                <svg width="10" height="10" viewBox="0 0 10 10">
+                    <path d="M0,5 L10,5" stroke="currentColor" stroke-width="1"/>
+                </svg>
+            </button>
+            <button class="titlebar-control" id="maximize-btn" title="最大化">
+                <svg width="10" height="10" viewBox="0 0 10 10">
+                    <rect x="0" y="0" width="9" height="9" fill="none" stroke="currentColor" stroke-width="1"/>
+                </svg>
+            </button>
+            <button class="titlebar-control close" id="close-btn" title="关闭">
+                <svg width="10" height="10" viewBox="0 0 10 10">
+                    <path d="M0,0 L10,10 M0,10 L10,0" stroke="currentColor" stroke-width="1"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- 主要内容区域 -->
+    <div class="main-container">
+        <!-- 侧边栏 -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <button class="back-btn" id="back-btn">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                    </svg>
+                    返回聊天
+                </button>
+            </div>
+            <div class="settings-nav">
+                <div class="nav-item active" data-tab="performance">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M1.5 1.5A.5.5 0 012 1h4a.5.5 0 010 1H3v2.5a.5.5 0 01-1 0V2a.5.5 0 01-.5-.5zm3 9a.5.5 0 01.5-.5h1a.5.5 0 010 1H5a.5.5 0 01-.5-.5z"/>
+                    </svg>
+                    性能优化
+                </div>
+                <div class="nav-item" data-tab="about">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M8 15A7 7 0 118 1a7 7 0 010 14zm0 1A8 8 0 108 0a8 8 0 000 16z"/>
+                        <path d="M5.255 5.786a.237.237 0 00.241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 00.25.246h.811a.25.25 0 00.25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+                    </svg>
+                    关于
+                </div>
+            </div>
+        </div>
+
+        <!-- 设置内容区域 -->
+        <div class="settings-container">
+            <!-- 性能优化面板 -->
+            <div class="settings-panel active" id="performance-panel">
+                <div class="panel-header">
+                    <h2>性能优化</h2>
+                    <p>调整应用性能和并发设置</p>
+                </div>
+                
+                <div class="settings-form">
+                    <div class="form-group">
+                        <label for="concurrent-requests">并发请求数</label>
+                        <div class="slider-group">
+                            <input type="range" id="concurrent-requests" min="1" max="100" step="1" value="20" />
+                            <span class="slider-value">20</span>
+                        </div>
+                        <small>同时处理的最大请求数量</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="request-timeout">请求超时 (秒)</label>
+                        <input type="number" id="request-timeout" min="5" max="300" value="180" />
+                        <small>单个请求的超时时间</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="retry-attempts">重试次数</label>
+                        <input type="number" id="retry-attempts" min="0" max="5" value="2" />
+                        <small>请求失败时的重试次数</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="auto-save" checked />
+                            <span class="checkmark"></span>
+                            自动保存对话
+                        </label>
+                        <small>自动保存聊天记录到本地</small>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="auto-scroll-to-bottom" checked />
+                            <span class="checkmark"></span>
+                            自动滚动到底部
+                        </label>
+                        <small>新消息出现时自动滚动到聊天底部</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="system-tray" checked />
+                            <span class="checkmark"></span>
+                            显示系统托盘图标
+                        </label>
+                        <small>在系统托盘中显示应用图标，支持快速操作</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="auto-start" />
+                            <span class="checkmark"></span>
+                            开机自动启动
+                        </label>
+                        <small>系统启动时自动运行司空AI，支持静默启动模式</small>
+                    </div>
+
+                    <div class="form-group" id="silent-start-group" style="display: none;">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="silent-start" checked />
+                            <span class="checkmark"></span>
+                            静默启动
+                        </label>
+                        <small>开机启动时不显示主窗口，仅在系统托盘创建图标</small>
+                    </div>
+
+                    <div class="form-group" id="hotkey-group">
+                        <label>快捷键设置</label>
+                        
+                        <div class="hotkey-item">
+                            <label for="hotkey-toggle">显示/隐藏窗口</label>
+                            <div class="hotkey-input-container">
+                                <input type="text" id="hotkey-toggle" class="hotkey-input" placeholder="点击录入快捷键" readonly />
+                                <button type="button" class="hotkey-clear" id="clear-toggle" title="清除快捷键">×</button>
+                            </div>
+                            <small>全局快捷键，可在任何时候快速显示或隐藏窗口</small>
+                        </div>
+
+                        <div class="hotkey-item">
+                            <label for="hotkey-show">显示窗口</label>
+                            <div class="hotkey-input-container">
+                                <input type="text" id="hotkey-show" class="hotkey-input" placeholder="点击录入快捷键" readonly />
+                                <button type="button" class="hotkey-clear" id="clear-show" title="清除快捷键">×</button>
+                            </div>
+                            <small>全局快捷键，从托盘或后台快速显示窗口</small>
+                        </div>
+
+                        <div class="hotkey-item">
+                            <label for="hotkey-hide">隐藏窗口</label>
+                            <div class="hotkey-input-container">
+                                <input type="text" id="hotkey-hide" class="hotkey-input" placeholder="点击录入快捷键" readonly />
+                                <button type="button" class="hotkey-clear" id="clear-hide" title="清除快捷键">×</button>
+                            </div>
+                            <small>全局快捷键，快速隐藏窗口到托盘</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="sidebar-hotkey-group">
+                        <label>边栏快捷键设置</label>
+                        
+                        <div class="hotkey-item">
+                            <label for="hotkey-left-sidebar">折叠/展开左侧边栏</label>
+                            <div class="hotkey-input-container">
+                                <input type="text" id="hotkey-left-sidebar" class="hotkey-input sidebar-hotkey" placeholder="点击录入快捷键" readonly />
+                                <button type="button" class="hotkey-clear" id="clear-left-sidebar" title="清除快捷键">×</button>
+                            </div>
+                            <small>应用内快捷键，用于快速折叠或展开左侧边栏</small>
+                        </div>
+
+                        <div class="hotkey-item">
+                            <label for="hotkey-right-sidebar">折叠/展开右侧边栏</label>
+                            <div class="hotkey-input-container">
+                                <input type="text" id="hotkey-right-sidebar" class="hotkey-input sidebar-hotkey" placeholder="点击录入快捷键" readonly />
+                                <button type="button" class="hotkey-clear" id="clear-right-sidebar" title="清除快捷键">×</button>
+                            </div>
+                            <small>应用内快捷键，用于快速折叠或展开右侧边栏</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="window-opacity">窗口透明度</label>
+                        <div class="slider-group">
+                            <input type="range" id="window-opacity" min="10" max="100" step="1" value="100" />
+                            <span class="slider-value">100%</span>
+                        </div>
+                        <small>调整窗口的透明度，范围10%-100%</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="window-blur" />
+                            <span class="checkmark"></span>
+                            窗口模糊效果
+                        </label>
+                        <small>启用窗口背景模糊效果（需要透明度低于100%）</small>
+                    </div>
+
+                    <div class="form-group" id="blur-intensity-group" style="display: none;">
+                        <label for="blur-intensity">模糊强度</label>
+                        <div class="slider-group">
+                            <input type="range" id="blur-intensity" min="1" max="10" step="1" value="5" />
+                            <span class="slider-value">5</span>
+                        </div>
+                        <small>模糊效果强度（1-10）</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 关于面板 -->
+            <div class="settings-panel" id="about-panel">
+                <div class="panel-header">
+                    <h2>关于司空AI</h2>
+                    <p>版本信息和帮助</p>
+                </div>
+                
+                <div class="about-content">
+                    <div class="app-info">
+                        <img src="../ico.png?v=1.5.4" alt="司空AI" class="app-icon">
+                        <h3>司空AI</h3>
+                        <p class="version">版本 1.0.17</p>
+                        <p class="description">一个现代化的桌面 AI 聊天应用</p>
+                    </div>
+
+                    <div class="links-section">
+                        <h4>相关链接</h4>
+                        <div class="link-group">
+                            <a href="#" class="link-item">📖 使用文档</a>
+                            <a href="#" class="link-item">🐛 反馈问题</a>
+                            <a href="#" class="link-item">💡 功能建议</a>
+                            <a href="#" class="link-item">🎯 项目主页</a>
+                        </div>
+                    </div>
+
+                    <div class="tech-info">
+                        <h4>技术信息</h4>
+                        <div class="tech-item">
+                            <span>框架:</span>
+                            <span>Electron</span>
+                        </div>
+                        <div class="tech-item">
+                            <span>渲染引擎:</span>
+                            <span>Chromium</span>
+                        </div>
+                        <div class="tech-item">
+                            <span>Node.js:</span>
+                            <span id="node-version">-</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 保存按钮 -->
+            <div class="settings-footer">
+                <button class="btn-secondary" id="reset-btn">重置默认</button>
+                <button class="btn-primary" id="save-btn">保存设置</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../scripts/main.js"></script>
+    <script src="../scripts/titlebar.js"></script>
+    <script src="../scripts/sidebar-manager.js"></script>
+    <script src="../scripts/settings.js"></script>
+</body>
+</html>
